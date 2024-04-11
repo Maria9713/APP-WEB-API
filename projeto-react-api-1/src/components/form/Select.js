@@ -7,15 +7,16 @@ function Select ({ text, name, options, handlerOnchange, value}){
 
             <label htmlFor={name}>{text}</label>
 
-            <select name={name} id={name}>
+            <select name={name} id={name} onChange={handlerOnchange}>
+                
             <option>Slecione uma categoria</option>
 
-                
                 {
                     options.map((option)=>(
+                    // options é o props 
                         <option
                         value={option.id}
-                        key={option.id}>
+                        key={option.id} >
 
                         {option.name}
 

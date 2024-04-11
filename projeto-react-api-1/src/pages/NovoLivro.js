@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import Input from '../components/form/Input';
 import styles from './NovoLivro.module.css';
@@ -6,7 +7,14 @@ import Select from '../components/form/Select';
 
 function NovoLivro () {
 
+    // OBEJETO DE NAVEGAÇÃO
+    const navigate = useNavigate();
+
+    // STATE DE DAODS DAS CATEGORIAS VINDAS DOS ARQUIVO db.json
     const [categories, setCategories] = useState([]);
+    // STATE DE DADOS QUE VAI ARMAZENAR O OBJETO JSON DE LIVRO 
+    const [book, setBook] = useState({})
+    // RECUPERA OS DADOS DE CATEGORIA DO ARQUIVO bd.json 
     useEffect ( ()=>{
         fetch(
             'http://localhost:5000/categories',
@@ -30,13 +38,61 @@ function NovoLivro () {
             
         }, [])
 
+        // HANDLER DE CAPTURA DOS DADOS DE INPUT (NOME DO LIVRO, AUTOR, DESCRICAO)
+        function handlerChangeBook(event){
+            setBook({...book,[event.target.name] : event.target.value});
+            console.log(book)
+        }
+
+         // HANDLER DE CAPTURA DOS DADOS DE SELECT (NOME DO LIVRO, AUTOR, DESCRICAO)
+        function handlerChangeCategory(event){
+            setBook({...book, category:{
+                id: event.target.value,
+                category: event.target.options[event.target.selectedIndex].text
+            }});
+            // console.log(book)
+        }
+
+        console.log(book)
+
+
+        // INCERÇÃO DOS DADOS DE LIVRO 
+        function createBook(book){
+
+            fetch('http://localhost:5000/books', {
+
+                method:'POST',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(book)
+            })
+            .then(
+                (resp)=>resp.json()
+            )
+            .then(
+                (data)=>{
+                    console.log(data)
+                    navigate('/livros')
+                }
+            )
+            .catch(
+                (err)=>{console.log(err)}
+            )
+        }
+
+        function submit(event){
+            event.preventDefault();
+            createBook(book);
+        }
+
     return(
 
         <section className={styles.novo_livro_container}>
 
             <h1>Casdastro de Livro</h1>
 
-            <form>
+            <form onSubmit={submit}>
 
                 {/* <p>
                     <input type='text' placeholder='Nome do livro' />
@@ -48,6 +104,7 @@ function NovoLivro () {
                     id='nome_livro'
                     placeholder='Digite o Título do Livro'
                     text='Digite o Título do Livro:'
+                    handlerOnchange={handlerChangeBook}
                 />
 
                 {/* <p>
@@ -60,6 +117,7 @@ function NovoLivro () {
                     id='nome_autor'
                     placeholder='Digite o Nome do Autor'
                     text='Digite o Nome do Autor:'
+                    handlerOnchange={handlerChangeBook}
                 />
 
                 {/* <p>
@@ -72,12 +130,14 @@ function NovoLivro () {
                     id='descrição'
                     placeholder='Digite uma descrição para o livro'
                     text='Descrição:'
+                    handlerOnchange={handlerChangeBook}
                 />
 
                 <Select
                     name="categoria_id"
                     text="Selecione a categoria do livro"
                     options={categories}
+                    handlerOnchange={handlerChangeCategory}
                 />
 
                 <p>
