@@ -12,8 +12,10 @@ function NovoLivro () {
 
     // STATE DE DAODS DAS CATEGORIAS VINDAS DOS ARQUIVO db.json
     const [categories, setCategories] = useState([]);
+
     // STATE DE DADOS QUE VAI ARMAZENAR O OBJETO JSON DE LIVRO 
     const [book, setBook] = useState({})
+
     // RECUPERA OS DADOS DE CATEGORIA DO ARQUIVO bd.json 
     useEffect ( ()=>{
         fetch(
@@ -72,8 +74,8 @@ function NovoLivro () {
             )
             .then(
                 (data)=>{
-                    console.log(data)
-                    navigate('/livros')
+                    console.log(data);
+                    navigate('/livros',{state:'Livro Cadastrado Com Sucesso!'})
                 }
             )
             .catch(
