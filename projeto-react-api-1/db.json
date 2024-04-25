@@ -49,6 +49,16 @@
         "id": "2",
         "category": "BACK-END"
       }
+    },
+    {
+      "id": "40ff",
+      "nome_livro": "livro2",
+      "nome_autor": "autor_livro2",
+      "descrição": "descrição_livro2",
+      "category": {
+        "id": "3",
+        "category": "FRONT-END"
+      }
     }
   ],
   "categories": [
