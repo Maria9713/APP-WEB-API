@@ -1,16 +1,6 @@
 {
   "books": [
     {
-      "id": "3df4",
-      "nome_livro": "As cavernas de Aço",
-      "nome_autor": "Issac Asmov",
-      "descrição": "Uma obra da serie dos robôs",
-      "category": {
-        "id": "1",
-        "category": "FICÇÃO CIENTIFICA"
-      }
-    },
-    {
       "id": "40ff",
       "nome_livro": "livro2",
       "nome_autor": "autor_livro2",

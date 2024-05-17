@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Livros from './pages/Livros';
 import NovoLivro from './pages/NovoLivro';
+import  EditarLivro from './pages/EditarLivro';
 
 import Container from './components/Container';
 
@@ -29,6 +30,7 @@ function App() {
               <Route index element={<Home/>}/>
               <Route path='/livros' element={<Livros/>}/>
               <Route path='/novolivro' element={<NovoLivro/>}/>
+              <Route path='/editarlivro/:id' element={<EditarLivro/>}/>
 
             </Route>
           
