@@ -11,46 +11,6 @@
       }
     },
     {
-      "id": "4e94",
-      "nome_livro": "teste de livro",
-      "nome_autor": "teste de autor",
-      "descrição": "teste de descrição",
-      "category": {
-        "id": "2",
-        "category": "BACK-END"
-      }
-    },
-    {
-      "id": "ce59",
-      "nome_livro": "teste de cadastro de livro 2",
-      "nome_autor": "teste de cadastro de autor 2",
-      "descrição": "teste de descrição 2",
-      "category": {
-        "id": "4",
-        "category": "BANCO DE DADOS"
-      }
-    },
-    {
-      "id": "e82a",
-      "nome_livro": "a",
-      "nome_autor": "a",
-      "descrição": "a",
-      "category": {
-        "id": "1",
-        "category": "FICÇÃO CIENTIFICA"
-      }
-    },
-    {
-      "id": "9f0a",
-      "nome_livro": "a",
-      "nome_autor": "a",
-      "descrição": "b",
-      "category": {
-        "id": "2",
-        "category": "BACK-END"
-      }
-    },
-    {
       "id": "40ff",
       "nome_livro": "livro2",
       "nome_autor": "autor_livro2",
