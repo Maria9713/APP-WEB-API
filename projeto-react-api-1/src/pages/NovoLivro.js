@@ -17,28 +17,28 @@ function NovoLivro () {
     const [book, setBook] = useState({})
 
     // RECUPERA OS DADOS DE CATEGORIA DO ARQUIVO bd.json 
-    useEffect ( ()=>{
-        fetch(
-            'http://localhost:5000/categories',
-            {
-            method:'GET',
-            headers:{
-                'Content-Type' : 'application/json'
-            }
-            }).then(
-                (resp)=>resp.json()
-            ).then(
-                (data)=>{
-                    setCategories(data);
-                    console.log(data);
-                }
-            ).catch(
-                (error)=>{
-                    console.log(error);
-                }
-            )
+    // useEffect ( ()=>{
+    //     fetch(
+    //         'http://localhost:5000/categories',
+    //         {
+    //         method:'GET',
+    //         headers:{
+    //             'Content-Type' : 'application/json'
+    //         }
+    //         }).then(
+    //             (resp)=>resp.json()
+    //         ).then(
+    //             (data)=>{
+    //                 setCategories(data);
+    //                 console.log(data);
+    //             }
+    //         ).catch(
+    //             (error)=>{
+    //                 console.log(error);
+    //             }
+    //         )
             
-        }, [])
+    //     }, [])
 
         // HANDLER DE CAPTURA DOS DADOS DE INPUT (NOME DO LIVRO, AUTOR, DESCRICAO)
         function handlerChangeBook(event){
@@ -61,13 +61,17 @@ function NovoLivro () {
         // INCERÇÃO DOS DADOS DE LIVRO 
         function createBook(book){
 
-            fetch('http://localhost:5000/books', {
+            fetch('http://localhost:5000/inserirLivro', {
 
                 method:'POST',
-            headers:{
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(book)
+                mode:'cors',
+
+                headers:{
+                    'Content-Type' : 'application/json',
+                    'Access-Control-Allow-Origin':'*',
+                    'Access-Control-Allow-Headers':'*',
+                },
+                body: JSON.stringify(book)
             })
             .then(
                 (resp)=>resp.json()
@@ -82,7 +86,7 @@ function NovoLivro () {
                 (err)=>{console.log(err)}
             )
         }
-
+        //FUNÇÃO SUBMIT
         function submit(event){
             event.preventDefault();
             createBook(book);
@@ -115,8 +119,8 @@ function NovoLivro () {
 
                 <Input
                     type='text'
-                    name='nome_autor'
-                    id='nome_autor'
+                    name='autor_livro'
+                    id='autor_livro'
                     placeholder='Digite o Nome do Autor'
                     text='Digite o Nome do Autor:'
                     handlerOnchange={handlerChangeBook}
@@ -128,8 +132,8 @@ function NovoLivro () {
                 
                 <Input
                     type='text'
-                    name='descrição'
-                    id='descrição'
+                    name='descricao_livro'
+                    id='descricao_livro'
                     placeholder='Digite uma descrição para o livro'
                     text='Descrição:'
                     handlerOnchange={handlerChangeBook}
@@ -143,7 +147,7 @@ function NovoLivro () {
                 />
 
                 <p>
-                    <input type='submit' placeholder='Cadastrar livro' />
+                    <input type='submit' value='Cadastrar livro' />
                 </p>
 
             </form>

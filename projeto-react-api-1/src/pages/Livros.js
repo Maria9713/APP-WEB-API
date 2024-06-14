@@ -27,7 +27,7 @@ function Livros () {
             .then((resp) => resp.json())
             .then((data) => {setBooks(data.data)})
             .catch((err) => {console.log(err)});
-    },[books]);
+    },[]);
 
     //FUNÇÃO DE EXCLUSÃO DE LIVRO
     function removeBooks(id){
@@ -43,7 +43,7 @@ function Livros () {
         .then(resp => resp.json())
         .then(
             (data)=>{
-                // setBooks(books.filter((book_data)=>book_data.id != id))
+                setBooks(books.filter((book_data)=>book_data.cod_livro != id))
                 // alert('Livro Excluído!')
                 setBookMessage('LIVRO EXCLUIDO COM SUCESSO!')
             }
@@ -85,7 +85,7 @@ function Livros () {
                     <CardBook
                         id={book.cod_livro}
                         livro={book.nome_livro}
-                        autor={book.nome_autor}
+                        autor={book.autor_livro}
                         // category={turmas.category.category}
                         key={book.cod_livro}
                         handlerRemover={removeBooks}
